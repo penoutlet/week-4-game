@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<!--Jquery Link  -->
+<script src="https://code.jquery.com/jquery.js"></script>
+
+
+<!-- Added a link to Bootstrap-->
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+ -->
+<!-- <link rel="stylesheet" type="text/css" src="assets/images/style.css">
+ -->
+
+<style type="text/css">
+
+    .crystals {
+        height:80%;
+        width:100%;
+        float:left;
+
+    }
+    .rupee-image {
+
+    height:200px;
+    width:200px;
+    }
+
+    #targetnumber {
+
+      float:left;
+      font: 20px;
+      height:50px;
+      width:50px;
+      position:absolute;
+    }
+
+    </style>
+</head>
+
+<body>
+
+<!-- Container begin -->
+
+<h1> Number to Guess:  <span id="targetnumber"></h1>
+<div class="crystals">
+
+
+</div>
+<!-- Container End -->
+</div> 
+
+<script type="text/javascript">
+
+// Code the button above "#random-button" to generate a random number between 0 and 100, then display that num at the top of the screen.
+
+// THen create four buttons with the four rupee images you found, and assign each a value.
+
+// VARIABLES
+var target = Math. round(Math. random()*100) + 1;
+$("#targetnumber").text(target)
+
+var counter = 0;
+
+var options = [Math.round(Math.random()*20+1),
+Math.round(Math.random()*20+1),
+Math.round(Math.random()*20+1),
+Math.round(Math.random()*20+1)];
+
+// Loop to create crystals for every option.
+
+for (var i = 0; i < options.length; i++) {
+
+  //Each iteration, we will create an <img> tag.
+
+  var image = $("<img>");
+
+
+  // Crystals will get the class .rupee
+  image.addClass("rupee-image");
+
+// each crystal is given a src to the crystal image.
+
+image.attr("src", "https://ih0.redbubble.net/image.31622460.1172/sticker,375x360.png");
+// THen each gets a data attribute called data-rupeeValue
+
+image.attr("data-rupeeValue", options[i]);
+
+// Finally, each image gets added to the page with all the above designations.
+$(".crystals").append(image);
+}
+
+// Now, we will have one click event function for all crystals
+
+
+$(".rupee-image").on("click", function(){
+
+// we now extract the value of each crystal from the data attribute. 
+// using $(this) specifies that we should extract the crystal value of the clicked crystal
+// the .attr(data-rupeeValue) grabs the value out of the "data-rupeeValue" attribute. 
+// since attributes on html elements are strings, we must convert it to a string. 
+
+var rupeeValue = ($(this).attr("data-rupeeValue"))
+  ;
+
+  rupeeValue= parseInt(rupeeValue);
+  // then we add the rupeeValue to the user's counter, which is a global variable, which will be added to no matter which crystal we click.
+
+  counter += rupeeValue;
+
+// Lose/Win logic goes below. 
+
+alert("Your score: " + counter);
+
+  if (counter === target) {
+      alert("You win!")
+
+  }
+
+  else if (counter >= target) {
+    alert("You lose!!");
+  }
+
+});
+
+
+
+
+
+
+// when you click one, your own counter will appear. 
+// this counter should update with each successive click of each rupee. 
+
+	
+</script>
+
+
+
+
+</body>
+</html>
