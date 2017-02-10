@@ -15,6 +15,11 @@
 
 <style type="text/css">
 
+
+    body {
+
+      background-color: rgb(204, 153, 0);
+    }
     .crystals {
         height:80%;
         width:100%;
@@ -34,8 +39,23 @@
       height:50px;
       width:800px;
       position:absolute;
+      color: rgb(255, 255, 102);
     }
 
+    h1 {
+    color: rgb(255, 255, 102);
+    
+
+    }
+
+    .winslosses {
+
+      float:right;
+      height:200px;
+      width: 200px;
+      font-size: 30px;
+
+    }
     </style>
 </head>
 
@@ -44,6 +64,8 @@
 <!-- Container begin -->
 
 <h1> Number to Guess:  <span id="targetnumber"></h1>
+
+<div class="winslosses"> </div>
 <div class="crystals">
 
 
@@ -66,7 +88,7 @@ var counter = 0;
 var wins = 0;
 var loss = 0;
 
-$("#targetnumber").append("    ----Wins: " + wins + " ----Losses: " + loss);
+$(".winslosses").append("Wins: " + wins + "---Losses: " + loss);
 
 var options = [Math.round(Math.random()*12+1),
 Math.round(Math.random()*12+1),
