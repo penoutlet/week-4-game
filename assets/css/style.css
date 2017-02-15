@@ -5,8 +5,12 @@ body {
 }
 
 .container {
-  height: 650px;
+  height: 666px;
   width:100%;
+  margin-left: -20px;
+  margin-right: -20px;
+  margin-top:-20px;
+  margin-bottom: -20px;
       background-image: url('../images/Bazaar.png');
   
 }
