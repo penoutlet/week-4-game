@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+
+	<!--Jquery Link  -->
+<script src="https://code.jquery.com/jquery.js"></script>
+<!-- What's broken...
+
+Crystal values won't reset at the if statements. 
+
+TNeed the button to reset wins and losses.
+
+Both of these seem like scope problems. Can't override the global values of the crystals or the wins and losses. 
+
+
+
+ -->
+
+<style type="text/css">
+
+
+    body {
+
+      background-image: url("http://vignette1.wikia.nocookie.net/zelda/images/c/c8/Bazaar.png/revision/latest?cb=20100218002412");
+      text-align: center;
+    }
+
+    .counter {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 0px;  
+        margin-right: 400px;
+    color: rgb(255, 255, 102);
+    }
+    .crystals {
+        height:80%;
+        width:100%;
+        float:left;
+
+    }
+    .rupee-image {
+
+    height:200px;
+    width:200px;
+    }
+
+    #targetnumber {
+
+      float:left;
+      font: 20px;
+      height:50px;
+      width:100px;
+      position:absolute;
+      color: rgb(255, 255, 102);
+    }
+
+    h1 {
+    color: rgb(255, 255, 102);
+    text-align: center;
+
+    }
+
+    .winslosses {
+      float:left;
+      height:200px;
+      width: 200px;
+      font-size: 30px;
+      margin-left: 450px;
+      margin-bottom:-150px;
+      color: rgb(255, 255, 102);
+    
+    }
+    </style>
+</head>
+
+<body>
+
+<!-- Container begin -->
+
+<h1> Number to Guess:  <span id="targetnumber"></h1>
+
+<div class="winslosses"> </div>
+<div class="crystals"> </div>
+<div class="counter"></div>
+<!-- Container End -->
+ 
+
+<script type="text/javascript">
+
+// Code the button above "#random-button" to generate a random number between 0 and 100, then display that num at the top of the screen.
+
+// THen create four buttons with the four rupee images you found, and assign each a value.
+
+// VARIABLES
+
+ $(document).ready(function() {
+
+
+
+
+
+// GLOBAL SCOPE VARIABLES =================================
+
+var target = Math.floor((Math.random() * 102 ) +19);
+$("#targetnumber").text(target);
+
+
+var counter = 0;
+var wins = 0;
+var loss = 0;
+    // displays the wins and losses in the .winslosses div.
+$(".winslosses").text("Wins " + wins + "Losses " + loss);
+
+// Code between this comment and the next comment is an attempt at doing this homework with an object instead of an array... comment it out to backup. 
+
+
+options = {
+
+  rupeevalue1: Math.floor((Math.random()*12)+1),
+  rupeevalue2: Math.floor((Math.random()*12)+1),
+  rupeevalue3: Math.floor((Math.random()*12)+1),
+  rupeevalue4: Math.floor((Math.random()*12)+1)
+
+};
+//
+var rupee1 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
+var rupee2 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
+var rupee3 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
+var rupee4 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
+
+//
+rupee1.attr("data-rupeeValue", options.rupeevalue1);
+rupee2.attr("data-rupeeValue", options.rupeevalue2);
+rupee3.attr("data-rupeeValue", options.rupeevalue3);
+rupee4.attr("data-rupeeValue", options.rupeevalue4);
+
+//
+$(".crystals").append(rupee1,rupee2,rupee3,rupee4);
+
+// start of reset function.
+var reset = function () { 
+
+
+counter = 0;
+$(".counter").text("Your counter: " + counter);
+// Reset global crystal values below. 
+
+
+resetoptions = {
+
+  resetvalue1: Math.floor((Math.random()*12)+1),
+  resetvalue2: Math.floor((Math.random()*12)+1),
+  resetvalue3: Math.floor((Math.random()*12)+1),
+  resetvalue4: Math.floor((Math.random()*12)+1)
+
+};
+
+
+rupee1.attr("data-rupeeValue", resetoptions.resetvalue1);
+rupee2.attr("data-rupeeValue", resetoptions.resetvalue2);
+rupee3.attr("data-rupeeValue", resetoptions.resetvalue3);
+rupee4.attr("data-rupeeValue", resetoptions.resetvalue4);
+
+target = Math.floor((Math.random() * 102) + 19);
+
+$("#targetnumber").text(target);
+
+
+  rupeevalue1 = resetoptions.resetvalue1,
+  rupeevalue2 = resetoptions.resetvalue2,
+  rupeevalue3 = resetoptions.resetvalue3,
+  rupeevalue4 = resetoptions.resetvalue4
+
+
+
+}; // end of reset function.
+
+
+// Start of on click function.
+$(".rupee-image").on("click", function(){
+
+
+var rupeeValue = ($(this).attr("data-rupeeValue"));
+
+  rupeeValue= parseInt(rupeeValue);
+
+  counter += rupeeValue;
+$(".counter").text("Your counter " + counter);
+
+
+
+  if (counter === target) {
+    alert("You win!")
+    wins++;
+    $(".winslosses").text("Wins " + wins + "Losses " + loss);
+    reset();    
+} 
+  else if (counter >= target) {
+    alert("You lose!!");
+    loss++;
+    $(".winslosses").text("Wins " + wins + "Losses " + loss);
+
+    reset();
+
+};
+
+
+
+
+}); // end of onclick function
+
+
+
+}); // end document ready 
+
+
+
+	
+</script>
+
+
+
+
+</body>
+</html>
