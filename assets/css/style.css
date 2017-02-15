@@ -1,12 +1,61 @@
-<style> 
+<style>
 
-		#crystals {
-			height: 200px;
-			width: 200px;
+body {
+  text-align: center;
+}
 
+.container {
+  height: 650px;
+  width:100%;
+      background-image: url('../images/Bazaar.png');
+  
+}
+    
 
-		}
+    .counter {
+        font-size: 30px;
+        text-align: center;
+        margin-top: 0px;  
+        margin-right: 400px;
+    color: rgb(255, 153, 0);
+    }
+    .crystals {
+        height:80%;
+        width:100%;
+        float:left;
+        text-align: center;
 
+    }
+    .rupee-image {
 
+    height:200px;
+    width:200px;
+    }
 
-</style>
+    #targetnumber {
+
+      float:left;
+      font: 20px;
+      height:50px;
+      width:100px;
+      position:absolute;
+      color: rgb(255, 255, 102);
+    }
+
+    h1 {
+    color: rgb(255, 255, 102);
+    text-align: center;
+    margin-top:0px;
+    }
+
+    .winslosses {
+      float:left;
+      height:200px;
+      width: 200px;
+      font-size: 30px;
+      margin-left: 450px;
+      margin-bottom:-150px;
+      color: rgb(255, 153, 0);
+    
+    }
+    </style>

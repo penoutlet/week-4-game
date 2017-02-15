@@ -16,73 +16,22 @@ Both of these seem like scope problems. Can't override the global values of the 
 
 
  -->
-
-<style type="text/css">
-
-
-    body {
-
-      background-image: url("http://vignette1.wikia.nocookie.net/zelda/images/c/c8/Bazaar.png/revision/latest?cb=20100218002412");
-      text-align: center;
-    }
-
-    .counter {
-        font-size: 30px;
-        text-align: center;
-        margin-top: 0px;  
-        margin-right: 400px;
-    color: rgb(255, 255, 102);
-    }
-    .crystals {
-        height:80%;
-        width:100%;
-        float:left;
-
-    }
-    .rupee-image {
-
-    height:200px;
-    width:200px;
-    }
-
-    #targetnumber {
-
-      float:left;
-      font: 20px;
-      height:50px;
-      width:100px;
-      position:absolute;
-      color: rgb(255, 255, 102);
-    }
-
-    h1 {
-    color: rgb(255, 255, 102);
-    text-align: center;
-
-    }
-
-    .winslosses {
-      float:left;
-      height:200px;
-      width: 200px;
-      font-size: 30px;
-      margin-left: 450px;
-      margin-bottom:-150px;
-      color: rgb(255, 255, 102);
-    
-    }
-    </style>
+<link rel="stylesheet" href="assets/css/style.css" type="text/css">
 </head>
 
 <body>
 
 <!-- Container begin -->
 
-<h1> Number to Guess:  <span id="targetnumber"></h1>
 
+<div class="container"> 
+<h1> Number to Guess:  <span id="targetnumber"></h1>
 <div class="winslosses"> </div>
 <div class="crystals"> </div>
 <div class="counter"></div>
+<div class="background"></div>
+</div>
+
 <!-- Container End -->
  
 
@@ -112,7 +61,7 @@ var loss = 0;
     // displays the wins and losses in the .winslosses div.
 $(".winslosses").text("Wins " + wins + "Losses " + loss);
 
-// Code between this comment and the next comment is an attempt at doing this homework with an object instead of an array... comment it out to backup. 
+// Generates random values for the rupees, a number between 1 and 12. 
 
 
 options = {
@@ -123,22 +72,22 @@ options = {
   rupeevalue4: Math.floor((Math.random()*12)+1)
 
 };
-//
-var rupee1 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
-var rupee2 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
-var rupee3 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
-var rupee4 = $("<img class='rupee-image' src='https:ih0.redbubble.net/image.31622460.1172/sticker,375x360.png'>");
+// creates img tags for each image, gives them the same class and image. 
+var rupee1 = $("<img class='rupee-image' src='assets/images/rupee.png'>");
+var rupee2 = $("<img class='rupee-image' src='assets/images/rupee.png'>");
+var rupee3 = $("<img class='rupee-image' src='assets/images/rupee.png'>");
+var rupee4 = $("<img class='rupee-image' src='assets/images/rupee.png'>");
 
-//
+// assigns the random values from the options object above to each rupee. 
 rupee1.attr("data-rupeeValue", options.rupeevalue1);
 rupee2.attr("data-rupeeValue", options.rupeevalue2);
 rupee3.attr("data-rupeeValue", options.rupeevalue3);
 rupee4.attr("data-rupeeValue", options.rupeevalue4);
 
-//
+// adds each image to the .crystal section of the page.
 $(".crystals").append(rupee1,rupee2,rupee3,rupee4);
 
-// start of reset function.
+// start of reset function for use at the end of the game.
 var reset = function () { 
 
 
@@ -146,7 +95,7 @@ counter = 0;
 $(".counter").text("Your counter: " + counter);
 // Reset global crystal values below. 
 
-
+// have to create a new object so the original value created after the page first loads is no longer used. 
 resetoptions = {
 
   resetvalue1: Math.floor((Math.random()*12)+1),
@@ -177,7 +126,7 @@ $("#targetnumber").text(target);
 }; // end of reset function.
 
 
-// Start of on click function.
+// Start of on click function. Makes it so each image with the class rupee-image does something when clicked. Also defines a win and a loss, and adds the wins and losses to the page for display. 
 $(".rupee-image").on("click", function(){
 
 
